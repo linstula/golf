@@ -44,7 +44,7 @@ describe ScoreCalc do
 
   it "creates a path for the score data" do
     course_scores = score_calc
-    file_path = course_scores.create_players_scores_path
+    file_path = course_scores.create_player_scores_path
     expect(File.exist?(file_path)).to be true
   end
 
