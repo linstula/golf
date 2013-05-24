@@ -2,12 +2,12 @@ require 'csv'
 
 class HoleLayout
   
-  def initialize(course_layout_file_name)
-    @course_layout_file_name = course_layout_file_name
+  def initialize(course_file_name)
+    @course_file_name = course_file_name
   end
 
   def course_path
-    File.expand_path(File.dirname(__FILE__) + '/' + @course_layout_file_name + '.csv')
+    File.expand_path(File.dirname(__FILE__) + '/' + @course_file_name + '.csv')
   end
 
   def load_course
@@ -20,3 +20,37 @@ class HoleLayout
     course_data
   end
 end
+
+
+
+class ScoreCalc
+
+  def initialize(course_pars_filename, players_score_filename)
+    course = HoleLayout.new(course_pars_filename)
+    @course_pars = course.load_course
+    @players_score_filename = players_score_filename
+  end
+
+  def create_players_scores_path
+    @players_scores_path =  File.expand_path(File.dirname(__FILE__) + '/' + @players_score_filename + '.csv')
+    @players_scores_path
+  end
+
+  def parse_scores
+    {}
+  end
+
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
