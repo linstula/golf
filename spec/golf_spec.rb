@@ -49,14 +49,16 @@ describe ScoreCalc do
   end
 
 
-  it "reads the score data from a file and returns a hash" do
+  it "reads the score data from a file and returns a hash of player/strokes pairs" do
     course_scores = score_calc
-    expect(course_scores.parse_scores).to be_kind_of(Hash)
+    expect(course_scores.parse_course_results).to_not be_empty
   end
-    
-
-  it "returns an array of a player's scores when a player is called"
      
+  it "creates a hash of player scores" do
+    course_scores = score_calc
+    course_scores.parse_course_results
+    expect(course_scores.player_scores).to_not be_empty
+  end
 
   
 end
