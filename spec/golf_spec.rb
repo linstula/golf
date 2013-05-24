@@ -2,24 +2,19 @@ require 'rspec'
 
 require_relative '../lib/golf'
 
-describe HoleLayout do
+describe CourseLayout do
 
-  let(:course_file_name) do
+  let(:course_filename) do
     'test'
   end
 
   let(:valid_course) do
-    HoleLayout.new(course_file_name)
-  end
-  
-  it 'should take in an arguement on initialization' do
-    course = valid_course
-    expect(course.nil?).to be false
+    CourseLayout.new(course_filename)
   end
 
   it 'creates a valid path to a file name passed in on initialization' do
     course = valid_course
-    path = course.course_path
+    path = course.course_path(course_filename)
     expect(File.exist?(path)).to be true
   end
 
@@ -31,11 +26,11 @@ describe HoleLayout do
 end
 
 
-describe ScoreCalc do
+describe ScoreCardCompiler do
 
   let(:course_pars) {"course_layout"}
   let(:score_data) {"score_data"}
-  let(:score_calc) {ScoreCalc.new(course_pars, score_data)}
+  let(:score_calc) {ScoreCardCompiler.new(course_pars, score_data)}
 
   it "accepts 2 arguements on initialization" do
     score_calc

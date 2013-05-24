@@ -1,19 +1,22 @@
 require 'pry'
 require 'csv'
 
-class HoleLayout
+class CourseLayout
+
+  attr_reader :course
   
-  def initialize(course_file_name)
-    @course_file_name = course_file_name
+  def initialize(course_filename)
+    @course_filename = course_filename
+    @course = load_course
   end
 
-  def course_path
-    File.expand_path(File.dirname(__FILE__) + '/' + @course_file_name + '.csv')
+  def course_path(course_filename)
+    File.expand_path(File.dirname(__FILE__) + '/' + course_filename + '.csv')
   end
 
   def load_course
     course_data = []
-    CSV.foreach(course_path, 'r') do |row|
+    CSV.foreach(course_path(@course_filename), 'r') do |row|
       row.each do |hole|
         course_data << hole.to_i
       end
@@ -24,10 +27,10 @@ end
 
 
 
-class ScoreCalc
+class ScoreCardCompiler
 
   def initialize(course_pars_filename, player_scores_filename)
-    course = HoleLayout.new(course_pars_filename)
+    course = CourseLayout.new(course_pars_filename)
     @course_pars = course.load_course
     @player_scores_filename = player_scores_filename
   end
