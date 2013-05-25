@@ -3,14 +3,14 @@ require 'rspec'
 require_relative '../lib/golf'
 
 
-describe CourseLayout do
+describe CourseReader do
 
   let(:course_filename) do
     'test'
   end
 
   let(:valid_course) do
-    CourseLayout.new(course_filename)
+    CourseReader.new(course_filename)
   end
 
   it 'creates a valid path to a file name passed in on initialization' do

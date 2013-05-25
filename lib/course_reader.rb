@@ -1,7 +1,7 @@
 require 'pry'
 require 'csv'
 
-class CourseLayout
+class CourseReader
 
   attr_reader :course
   
