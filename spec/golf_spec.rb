@@ -1,6 +1,8 @@
 require 'rspec'
 
-require_relative '../lib/golf'
+require_relative '../lib/course_layout'
+require_relative '../lib/score_card_compiler'
+
 
 describe CourseLayout do
 
@@ -48,12 +50,27 @@ describe ScoreCardCompiler do
     course_scores = score_calc
     expect(course_scores.parse_course_results).to_not be_empty
   end
-     
-  it "creates a hash of player scores" do
-    course_scores = score_calc
-    course_scores.parse_course_results
-    expect(course_scores.player_scores).to_not be_empty
-  end
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  # it "creates a hash of player scores" do
+  #   course_scores = score_calc
+  #   course_scores.parse_course_results
+  #   expect(course_scores.player_scores).to_not be_empty
+  # end
 
   
 end
