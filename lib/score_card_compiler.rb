@@ -4,9 +4,7 @@ class ScoreCardCompiler
 
   attr_reader :course_scores
 
-  def initialize(course_pars_filename, player_scores_filename)
-    @course_pars = CourseLayout.new("course_layout").course
-    # @course_pars = course.load_course
+  def initialize(player_scores_filename)
     @players_scores_path = create_player_scores_path(player_scores_filename)
     @course_scores = parse_course_results
   end
@@ -16,16 +14,16 @@ class ScoreCardCompiler
   end
 
   def parse_course_results
-    @player_scores = {}
+    player_scores = {}
     CSV.foreach(@players_scores_path, 'r') do |indv_course_results|
       player_name = indv_course_results[0..1].reverse.join(" ")
       strokes = []
       indv_course_results[2..-1].each do |hole|
         strokes << hole.to_i
       end
-      @player_scores[player_name] = strokes
+      player_scores[player_name] = strokes
     end
-    @player_scores
+    player_scores
   end
 
 

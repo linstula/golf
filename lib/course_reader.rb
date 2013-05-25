@@ -1,4 +1,3 @@
-require 'pry'
 require 'csv'
 
 class CourseReader

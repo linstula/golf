@@ -30,12 +30,7 @@ end
 describe ScoreCardCompiler do
 
   let(:player_scores_filename) { 'course_score_data' }
-  let(:score_calc) {ScoreCardCompiler.new("course_layout", "course_score_data")}
- 
-  it "accepts 2 arguements on initialization" do
-    score_calc
-  end
-  
+  let(:score_calc) {ScoreCardCompiler.new("course_score_data")}
 
   it "creates a path for the score data" do
     course_scores = score_calc
@@ -43,8 +38,7 @@ describe ScoreCardCompiler do
     expect(File.exist?(file_path)).to be true
   end
 
-
-  it "reads the score data from a file and returns a hash of player/strokes pairs" do
+  it "reads the score data from a file and returns a hash of player/scores pairs" do
     course_scores = score_calc
     expect(course_scores.parse_course_results).to_not be_empty
   end
@@ -53,6 +47,35 @@ end
 
 describe ScoreCardPrinter do
 
+  let(:printer) {ScoreCardPrinter.new('course_pars', 'course_scores')}
+
+  it "accepts course par data and course score data on initialization" do
+    printer
+  end
+
+
+  it "gets a players name" do 
+    expect(printer.get_name("Lin")).to eql("Lin")
+  end
+
+  it "calculates the hole number" do
+    expect(printer.print_hole_num(1)).to include("1")
+  end
+
+  it "calculates the par for the hole" do
+    expect(printer.print_hole_par(3)).to include('3')
+  end
+
+  it "calculates the score difference from par" do
+    par = 3
+    score = 4
+    expect(printer.calc_score_diff_from_par(score,par)).to eql(1)
+  end
+
+  it "it provides a golf score in words" do
+    diff_from_par = 1
+    expect(printer.score_in_words(diff_from_par)).to include("Bogey")
+  end
 
 
 
