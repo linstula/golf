@@ -90,6 +90,14 @@ describe ScoreCardPrinter do
 end
 
 
+describe Golf do
+
+  it "initializes with a course filename and a player_scores filename" do
+    expect{Golf.new('course_layout', 'course_score_data')}.to_not raise_error(ArgumentError)
+  end
+end
+
+
 
 
 
