@@ -1,12 +1,9 @@
 require 'csv'
 
-class ScoreCardCompiler
-
-  attr_reader :course_scores
+class ScoreCard
 
   def initialize(player_scores_filename)
     @players_scores_path = create_player_scores_path(player_scores_filename)
-    @course_scores = parse_course_results
   end
 
   def create_player_scores_path(player_scores_filename)
@@ -25,50 +22,4 @@ class ScoreCardCompiler
     end
     player_scores
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  # def player_scores
-  #   @player_scores = {}
-  #   players = @player_scores.keys
-
-  #   players.each do |player|
-  #     @player_scores[player] = nil
-  #   end
-
-  #   p = 0
-  #   @player_scores.values.each do |player_scores|
-  #     scores = []
-  #     i = 0
-  #     player_scores.each do |hole_strokes|
-  #       scores << hole_strokes - @course_pars[i]
-  #       i += 1
-  #     end
-  #     @player_scores[players[p]] = scores
-  #     p += 1
-  #   end
-
-  #   @player_scores
-
-  # end
-
-
-
-
-
-
-
-
 end

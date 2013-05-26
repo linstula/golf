@@ -1,8 +1,6 @@
 require 'csv'
 
 class CourseReader
-
-  attr_reader :course
   
   def initialize(course_filename)
     @course_filename = course_filename

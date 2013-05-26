@@ -72,11 +72,4 @@ class ScoreCardPrinter
       puts
     end 
   end
-
-
-
-
-
-
-
 end
