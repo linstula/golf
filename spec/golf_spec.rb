@@ -49,27 +49,30 @@ describe ScoreCardPrinter do
 
   let(:printer) {ScoreCardPrinter.new('course_pars', 'course_scores')}
 
+  let(:pars)    { [4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3] }
+  let(:scores)  { [3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 3, 4, 5, 6, 7, 8] }
+
+
   it "accepts course par data and course score data on initialization" do
     printer
   end
 
-
   it "gets a players name" do 
-    expect(printer.get_name("Lin")).to eql("Lin")
+    expect(printer.get_name("Lin")).to include("Lin")
   end
 
   it "calculates the hole number" do
-    expect(printer.print_hole_num(1)).to include("1")
+    expect(printer.hole_num(1)).to include("1")
   end
 
   it "calculates the par for the hole" do
-    expect(printer.print_hole_par(3)).to include('3')
+    expect(printer.hole_par(3)).to include('3')
   end
 
   it "calculates the score difference from par" do
     par = 3
     score = 4
-    expect(printer.calc_score_diff_from_par(score,par)).to eql(1)
+    expect(printer.diff_from_par(score,par)).to eql(1)
   end
 
   it "it provides a golf score in words" do
@@ -77,9 +80,13 @@ describe ScoreCardPrinter do
     expect(printer.score_in_words(diff_from_par)).to include("Bogey")
   end
 
+  it "calculates the total score" do
+    expect(printer.total_score(scores)).to include("99")
+  end
 
-
-
+  it "calculates the total difference from par" do
+    expect(printer.total_diff_from_par(pars, scores)).to include("27")
+  end
 end
 
 
