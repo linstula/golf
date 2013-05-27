@@ -13,5 +13,6 @@ class Golf
 
   def print_scores
     ScoreCardPrinter.new(@course, @player_scores).print_scores
+    LeaderBoard.new(@course, @player_scores).print_leader_board
   end
 end
