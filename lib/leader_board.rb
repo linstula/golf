@@ -1,11 +1,7 @@
 class LeaderBoard
 
-  # attr_reader :score_totals
-
 def initialize(pars, score_card)
   @par = pars.inject{ |sum, x| sum + x }
-  # @players = score_card.keys
-  # @player_scores = score_card.values
   @score_card = score_card
 end
 
